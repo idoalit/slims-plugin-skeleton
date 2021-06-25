@@ -1,0 +1,22 @@
+{
+    "name": "idoalit/slims-plugin-skeleton",
+    "description": "Skeleton project to build SLiMS plugin",
+    "type": "project",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Waris Agung Widodo",
+            "email": "ido.alit@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Plugin\\Lib\\": "lib/",
+            "Plugin\\App\\": "app/"
+        }
+    },
+    "config": {
+        "vendor-dir": "lib/vendor"
+    }
+}
