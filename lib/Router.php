@@ -127,7 +127,7 @@ class Router extends AltoRouter
         if ($match && !is_array($match['target']) && is_callable($match['target'])) {
             call_user_func_array($match['target'], $match['params']);
         } else {
-            if ($callable = $this->makeCallable($match['target'])) {
+            if (is_array($match) && $callable = $this->makeCallable($match['target'])) {
                 call_user_func_array($callable, $match['params']);
             } else {
                 // no route was matched
