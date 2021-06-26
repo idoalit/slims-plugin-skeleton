@@ -30,6 +30,3 @@ $router->get('/', [WelcomeController::class, 'index']);
 
 // run router
 $router->run();
-
-// stop here
-exit();
