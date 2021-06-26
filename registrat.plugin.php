@@ -23,7 +23,6 @@
  */
 
 // require libraries
-require_once LIB . 'AltoRouter.php';
 require_once __DIR__ . '/lib/vendor/autoload.php';
 
 // get plugin instance
