@@ -23,6 +23,8 @@
 namespace Plugin\Lib;
 
 use AltoRouter;
+use Laminas\Diactoros\Response;
+use Laminas\Diactoros\ServerRequestFactory;
 
 class Router extends AltoRouter
 {
@@ -128,7 +130,19 @@ class Router extends AltoRouter
             call_user_func_array($match['target'], $match['params']);
         } else {
             if (is_array($match) && $callable = $this->makeCallable($match['target'])) {
-                call_user_func_array($callable, $match['params']);
+
+                $requestFactory = ServerRequestFactory::fromGlobals(
+                    $_SERVER,
+                    $_GET,
+                    $_POST,
+                    $_COOKIE,
+                    $_FILES
+                );
+
+                $request = new Request($requestFactory);
+                $response = new Response();
+
+                call_user_func_array($callable, array_merge([$request, $response], $match['params']));
             } else {
                 // no route was matched
                 header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
